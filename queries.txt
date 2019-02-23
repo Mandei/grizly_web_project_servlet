@@ -1,0 +1,1 @@
+create table category(categoryType varchar(15), description varchar(50), products number);
