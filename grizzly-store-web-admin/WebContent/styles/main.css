@@ -17,7 +17,7 @@
             width: 60%;
             border:1px ;
             opacity: 0.6;
-            margin:5% 20% 3%; 
+            margin:2% 20% 1%; 
             padding:2% 5%;  
             border-radius: 20px; 
             background-color: rgb(241, 239, 239);
@@ -42,7 +42,10 @@
         }
 
    /*  Common element */
-
+        a
+        {
+            text-decoration: none;
+        }
 
         .main_bodypage
         {
@@ -113,7 +116,8 @@
             padding:6px 10px;
         }
 
-        .tabbar
+        
+        .tabbar,.nav-pills .pill .nav-link:not(.active) 
         {   
             background-color: lightgray;
             color: black;
@@ -128,9 +132,14 @@
             box-sizing: border-box;
         }
 
-        .active, .tabbar:hover ,.tabbar2:hover
+        
+
+        .tabbar:hover, .tabbar2:hover, .nav-pills .pill .nav-link,.nav-pills .pill-1 .nav-link
         {
             opacity: 1;
+            color: black;
+            background-color: lightgray;
+            border-radius: 0px;
             border-bottom:4px solid rgb(107, 102, 102);
         }
 
@@ -144,6 +153,13 @@
             position: absolute;
             bottom: 0px;
         } 
+        
+        div.place_bottom a
+        {
+        text-decoration:none;
+        text-align:center;
+        }
+        
         .place_bottom_div
         {
             width:200px; 
@@ -265,9 +281,10 @@
             width:100% 
         }
 
-        .tabbar2
+        .tabbar2,.nav-pills .pill-1 .nav-link:not(.active) 
         {
             width: 288px;
+            height:64px;
             color: black;
             background-color: gainsboro;
             outline: none;
@@ -389,7 +406,7 @@
         .main_divpage3_leftimg
         {
             width:350px ;
-            height: 372px; 
+            height: 370px; 
             float:left; 
             background-color: lightgrey;
         }

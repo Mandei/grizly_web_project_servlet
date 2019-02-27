@@ -1,6 +1,7 @@
 package com.cts.grizzlyStore.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cts.grizzlyStore.bean.Product;
+import com.cts.grizzlyStore.bean.Profile;
 import com.cts.grizzlyStore.service.LoginService;
 import com.cts.grizzlyStore.service.LoginServiceImpl;
+import com.cts.grizzlyStore.service.ProductService;
+import com.cts.grizzlyStore.service.ProductServiceImpl;
+import com.cts.grizzlyStore.service.UserService;
+import com.cts.grizzlyStore.service.UserServiceImpl;
+
+
 
 /**
  * Servlet implementation class LoginServlet
@@ -34,40 +43,67 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LoginService loginService=LoginServiceImpl.getInstance();
+		UserService userService=new UserServiceImpl();
+		RequestDispatcher requestdispatcher=null;
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		ProductService productService=new ProductServiceImpl();
+		
+		
+		
 		
 		HttpSession session=null;
 		
-		if(loginService.authentication(userId, password))
+		if(!(loginService.aunthenticateUser(userId)))
+		{
+			requestdispatcher=request.getRequestDispatcher("LoginError.html");
+			requestdispatcher.forward(request,response );
+			
+		}
+		
+		if(loginService.aunthenticateUser(userId) && loginService.getUserStatus(userId)>=3)
 		{
 			/*response.sendRedirect("admin.htm");*/
-			RequestDispatcher requestdispatcher=null;
+			requestdispatcher=request.getRequestDispatcher("userDeactivated.html");
+			requestdispatcher.forward(request,response );
+		}
 			
 			
-			String authorization=loginService.authorization(userId);
-			int userStatus=loginService.getUserStatus(userId);
-			System.out.println(userStatus);
+		else if(loginService.authentication(userId,password))
+		{
 			
-			if("A".equals(authorization))
+			if(loginService.getUserStatus(userId)<3)
 			{
-				
 					session=request.getSession();
 					session.setAttribute("userName", userId);
-					requestdispatcher=request.getRequestDispatcher("Admin_addProduct.jsp");
-					requestdispatcher.forward(request,response );
-				
-				
+					Profile profile = userService.getUserProfile(userId);
+					session.setAttribute("user",profile );
+					List<Product> products=productService.getProducts();
+					session.setAttribute("Prod", products);
+					requestdispatcher=request.getRequestDispatcher("Admin_listProduct.jsp");
+					requestdispatcher.forward(request, response);
+					
+					
+		
+			}
+			else
+			{
+				requestdispatcher = request.getRequestDispatcher("userDeactivated.html");
+				requestdispatcher.forward(request, response);
 			}
 			
 					
 		}
 		
 		else
-				{
-					System.out.println("failure");
-					response.sendRedirect("login.html");
-				}
+		{
+			
+			
+				loginService.incrementUserStatus(userId);
+				System.out.println(loginService.getUserStatus(userId));
+				requestdispatcher = request.getRequestDispatcher("login.html");
+			    requestdispatcher.forward(request, response);
+		}
 		
 	}
 }

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8" />
+   
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>View Product</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,8 +29,8 @@
                     </div>
                     <div class="mg60 float_left"  >
                             <label class="mg60 fa fa-bell " ></label>
-                            <label  class="mg20 ">Welcome , Admin  &lt; Mandy&gt;</label>
-                            <button class="logoutbutton">Logout</button>
+                            <label  class="mg20 ">Welcome , ${user.name }</label>
+                           <a class="logoutbutton" href="LogoutServlet">Logout</a>
                     </div>
                 </div>
             </div>
@@ -37,9 +39,7 @@
             <div class="border profileCard_left_pos" >
                 <h3 class="profileCard_top">Profile <small style="float: right;"> Edit</small></h3>
                 <img src="images/blank.jfif" class="blank_image_style" >
-                <p style="text-align:center"><b style="font-size:30px">Helen cho</b> 
-                <br><br> ID <br> GRZLY17234<br><br>Designation<br>Sr.Admin
-                <br><br> Office<br>NYC,NY,USA</p><br>
+              <p style="text-align:center"><b style="font-size:30px">${user.name }</b> <br><br> ID <br> ${user.userId }<br><br>Designation<br>${user.designation }<br><br>Office<br>${user.address }</p><br>
             </div>
 
             

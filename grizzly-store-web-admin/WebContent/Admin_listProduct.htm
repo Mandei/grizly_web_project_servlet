@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>List Product</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" >
+    
     <script src="scripts/main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles\main.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -36,12 +40,19 @@
         
     </div>
 
-            <div class="main_divpag32">
-                <div>
-                    <input type="button" class="tabbar active" value="PRODUCTS" >
-                    <input type="Button" class="tabbar" value="VENDORS">
-                    <input type="Button" class="tabbar2" >
-                </div>
+            <div class="main_divpag32 border">
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item pill">
+                      <a class="tabbar nav-link active" data-toggle="pill" href="#addProduct">PRODUCT</a>
+                    </li>
+                    <li class="nav-item pill">
+                      <a class="tabbar nav-link" data-toggle="pill" href="#vendorDiv">VENDOR</a>
+                    </li>
+                    <li class="nav-item pill-1">
+                        <a class="tabbar2 nav-link" data-toggle="pill" href="#check"> </a>
+                    </li>
+                </ul>
+
                 <div class="main_subdivpag32">
                     
                     

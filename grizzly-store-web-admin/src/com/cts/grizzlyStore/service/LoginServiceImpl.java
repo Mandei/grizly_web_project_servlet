@@ -1,7 +1,10 @@
 package com.cts.grizzlyStore.service;
 
+import com.cts.grizzlyStore.bean.Profile;
 import com.cts.grizzlyStore.dao.LoginDAO;
 import com.cts.grizzlyStore.dao.LoginDAOImpl;
+
+
 
 public class LoginServiceImpl implements LoginService {
 	
@@ -51,5 +54,28 @@ public class LoginServiceImpl implements LoginService {
 		
 		return dao.getUserType(userId);
 	}
+
+
+	@Override
+	public boolean aunthenticateUser(String userId) {
+		
+		return dao.aunthenticateUser(userId);
+	}
+	
+	
+	public int incrementUserStatus(String userId)
+	{
+		return dao.incrementUserStatus(userId);
+	}
+	
+	
+	public int resetUserStatus(String userId)
+	{
+		return dao.resetUserStatus(userId);
+	}
+	
+	
+	
+	
 
 }
